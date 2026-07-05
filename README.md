@@ -117,19 +117,31 @@ Groq docs note that the platform is OpenAI-compatible and supports image recogni
 
 ### Frontend on Netlify
 
-- Set the build command to `npm run build`
-- Set the publish directory to `dist`
-- Add `VITE_API_BASE_URL` to your Netlify environment variables
+- Use the repo-level [`netlify.toml`](/C:/Users/Mohamed%20Yousuf/Downloads/Professional/MultimodalCybersecurityConversationalAI/netlify.toml)
+- Netlify settings:
+  - Base directory: `frontend`
+  - Build command: `npm run build`
+  - Publish directory: `dist`
+- Add `VITE_API_BASE_URL` to Netlify environment variables and point it to your Render backend URL
+- If you use the Netlify dashboard only, make sure the deployed site still serves `index.html` for client-side navigation
 
 ### Backend on Render or Railway
 
-- Use `uvicorn main:app --host 0.0.0.0 --port $PORT`
-- Set environment variables:
+- Use the repo-level [`render.yaml`](/C:/Users/Mohamed%20Yousuf/Downloads/Professional/MultimodalCybersecurityConversationalAI/render.yaml)
+- Render settings:
+  - Root directory: `backend`
+  - Build command: `pip install -r requirements.txt`
+  - Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+  - Health check path: `/health`
+- Set environment variables in Render:
   - `GROQ_API_KEY`
   - `GROQ_MODEL`
   - `GROQ_VISION_MODEL`
   - `ALLOWED_ORIGINS`
-- Allow your deployed Netlify domain in `ALLOWED_ORIGINS`
+  - `FRONTEND_ORIGIN`
+  - `MAX_UPLOAD_MB`
+- Add your Netlify site URL to `ALLOWED_ORIGINS`, for example `https://your-site.netlify.app`
+- Set `FRONTEND_ORIGIN` to the exact Netlify URL
 
 ## Security Notes
 

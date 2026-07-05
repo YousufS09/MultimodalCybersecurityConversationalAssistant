@@ -7,7 +7,7 @@ import { api } from "../../services/api";
 import { riskColors } from "../../utils/constants";
 import { bumpDashboardSummary } from "../../utils/helpers";
 
-export default function UrlAnalyzer({ onSummaryChange }) {
+export default function UrlAnalyzer({ onSummaryChange, onAnalysis }) {
   const [url, setUrl] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);

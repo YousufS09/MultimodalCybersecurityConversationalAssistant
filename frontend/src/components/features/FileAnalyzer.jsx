@@ -7,7 +7,7 @@ import { api } from "../../services/api";
 import { riskColors } from "../../utils/constants";
 import { bumpDashboardSummary } from "../../utils/helpers";
 
-export default function FileAnalyzer({ onSummaryChange }) {
+export default function FileAnalyzer({ onSummaryChange, onAnalysis }) {
   const [file, setFile] = useState(null);
   const [context, setContext] = useState("");
   const [result, setResult] = useState(null);

@@ -7,7 +7,7 @@ import { api } from "../../services/api";
 import { riskColors } from "../../utils/constants";
 import { bumpDashboardSummary } from "../../utils/helpers";
 
-export default function LogAnalyzer({ onSummaryChange }) {
+export default function LogAnalyzer({ onSummaryChange, onAnalysis }) {
   const [logs, setLogs] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);

@@ -7,7 +7,7 @@ import { api } from "../../services/api";
 import { riskColors } from "../../utils/constants";
 import { bumpDashboardSummary } from "../../utils/helpers";
 
-export default function ThreatIntel({ onSummaryChange }) {
+export default function ThreatIntel({ onSummaryChange, onAnalysis }) {
   const [indicator, setIndicator] = useState("");
   const [indicatorType, setIndicatorType] = useState("ip");
   const [result, setResult] = useState(null);
