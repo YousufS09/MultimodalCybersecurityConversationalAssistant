@@ -1,5 +1,5 @@
 {
-  "name": "multimodal-cybersecurity-ai-assistant",
+  "name": "cybersecurity-conversational-ai-assistant",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -21,4 +21,3 @@
     "vite": "^7.0.4"
   }
 }
-

@@ -3,19 +3,16 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config.settings import get_settings
 from .middleware.error_handler import register_error_handlers
-from .routers.analyze import router as analyze_router
 from .routers.chat import router as chat_router
-from .routers.report import router as report_router
-from .routers.upload import router as upload_router
 
 
 def create_app() -> FastAPI:
     settings = get_settings()
 
     app = FastAPI(
-        title="Multimodal Cybersecurity AI Assistant",
+        title="Cybersecurity Conversational AI Assistant",
         version="1.0.0",
-        description="A Groq-powered cybersecurity analysis API for chat, logs, URLs, files, and reports.",
+        description="A Groq-powered cybersecurity chat API that only responds to security-related conversation.",
     )
 
     app.add_middleware(
@@ -28,14 +25,11 @@ def create_app() -> FastAPI:
 
     register_error_handlers(app)
     app.include_router(chat_router, prefix="/api")
-    app.include_router(analyze_router, prefix="/api")
-    app.include_router(upload_router, prefix="/api")
-    app.include_router(report_router, prefix="/api")
 
     @app.get("/")
     async def root() -> dict:
         return {
-            "message": "Multimodal Cybersecurity AI Assistant backend is running.",
+            "message": "Cybersecurity Conversational AI Assistant backend is running.",
             "status": "ok",
         }
 
@@ -44,4 +38,3 @@ def create_app() -> FastAPI:
         return {"status": "healthy"}
 
     return app
-

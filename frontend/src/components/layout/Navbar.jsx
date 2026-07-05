@@ -18,9 +18,7 @@ export default function Navbar({ activePage, onNavigate }) {
         <div className="hidden items-center gap-2 md:flex">
           {[
             ["home", "Home"],
-            ["dashboard", "Dashboard"],
             ["assistant", "Assistant"],
-            ["reports", "Reports"],
           ].map(([id, label]) => (
             <Button
               key={id}
@@ -35,7 +33,7 @@ export default function Navbar({ activePage, onNavigate }) {
         <button
           className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white md:hidden"
           onClick={() => onNavigate("assistant")}
-          aria-label="Open assistant"
+          aria-label="Open cybersecurity assistant"
         >
           <Menu size={18} />
         </button>
@@ -43,4 +41,3 @@ export default function Navbar({ activePage, onNavigate }) {
     </header>
   );
 }
-

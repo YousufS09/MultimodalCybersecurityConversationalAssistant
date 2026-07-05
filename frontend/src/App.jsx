@@ -1,28 +1,16 @@
 import { useMemo, useState } from "react";
 import Navbar from "./components/layout/Navbar";
-import Sidebar from "./components/layout/Sidebar";
 import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
 import Assistant from "./pages/Assistant";
-import Reports from "./pages/Reports";
 
 const pages = {
   home: Home,
-  dashboard: Dashboard,
   assistant: Assistant,
-  reports: Reports,
 };
 
 export default function App() {
   const [activePage, setActivePage] = useState("home");
-  const [latestAnalysis, setLatestAnalysis] = useState(null);
-  const [dashboardSummary, setDashboardSummary] = useState({
-    totalScans: 128,
-    highRiskFindings: 19,
-    recentAnalyses: 8,
-    commonThreat: "Phishing",
-  });
 
   const PageComponent = useMemo(() => pages[activePage] || Home, [activePage]);
 
@@ -33,16 +21,9 @@ export default function App() {
 
       <Navbar activePage={activePage} onNavigate={setActivePage} />
 
-      <div className="mx-auto grid min-h-[calc(100vh-72px)] max-w-[1600px] grid-cols-1 gap-6 px-4 pb-6 pt-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-6">
-        <Sidebar activePage={activePage} onNavigate={setActivePage} summary={dashboardSummary} />
+      <div className="mx-auto min-h-[calc(100vh-72px)] max-w-[1200px] px-4 pb-6 pt-6 lg:px-6">
         <main className="space-y-6">
-          <PageComponent
-          summary={dashboardSummary}
-          onSummaryChange={setDashboardSummary}
-          onAnalysis={setLatestAnalysis}
-          onNavigate={setActivePage}
-          latestAnalysis={latestAnalysis}
-        />
+          <PageComponent onNavigate={setActivePage} />
           <Footer />
         </main>
       </div>

@@ -3,11 +3,9 @@ import Card from "../common/Card";
 import Button from "../common/Button";
 import Loader from "../common/Loader";
 import { api } from "../../services/api";
-import { bumpDashboardSummary } from "../../utils/helpers";
-
-export default function ChatBox({ onSummaryChange }) {
+export default function ChatBox() {
   const [history, setHistory] = useState([
-    { role: "assistant", content: "I can help analyze threats, logs, URLs, indicators, and reports." },
+    { role: "assistant", content: "I only discuss cybersecurity topics. Ask me about threats, defenses, attacks, incident response, or security best practices." },
   ]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,7 +22,6 @@ export default function ChatBox({ onSummaryChange }) {
       const data = await api.chat({ message: nextHistory[nextHistory.length - 1].content, history });
       const updated = [...nextHistory, { role: "assistant", content: data.response }];
       setHistory(updated);
-      onSummaryChange && bumpDashboardSummary(onSummaryChange);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -37,7 +34,7 @@ export default function ChatBox({ onSummaryChange }) {
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-white">Cybersecurity AI Chat</p>
-          <p className="text-xs text-slate-400">Ask for detection, hardening, or remediation guidance.</p>
+          <p className="text-xs text-slate-400">Ask for detection, hardening, incident response, or remediation guidance.</p>
         </div>
         <Button onClick={() => setHistory([{ role: "assistant", content: "Chat reset." }])}>Reset</Button>
       </div>
@@ -59,7 +56,7 @@ export default function ChatBox({ onSummaryChange }) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          placeholder="Ask about a suspicious pattern, log entry, or attack chain..."
+          placeholder="Ask a cybersecurity question..."
           className="min-h-12 flex-1 rounded-2xl border border-white/10 bg-white/5 px-4 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-400/30"
         />
         <Button onClick={handleSend} disabled={loading}>
