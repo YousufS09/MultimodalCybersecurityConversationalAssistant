@@ -35,6 +35,10 @@ Edit `.env` and set:
 - `GROQ_MODEL`
 - `GROQ_VISION_MODEL`
 
+Recommended multimodal default:
+
+- `meta-llama/llama-4-scout-17b-16e-instruct`
+
 ### 2. Frontend
 
 ```bash
@@ -134,4 +138,3 @@ Groq docs note that the platform is OpenAI-compatible and supports image recogni
 - Inputs are validated before analysis
 - CORS is restricted through environment configuration
 - The assistant is instructed to stay defensive and educational
-

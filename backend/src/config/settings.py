@@ -9,8 +9,11 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     groq_api_key: str = Field(default="", alias="GROQ_API_KEY")
-    groq_model: str = Field(default="llama-3.1-8b-instant", alias="GROQ_MODEL")
-    groq_vision_model: str = Field(default="llama-3.2-11b-vision-preview", alias="GROQ_VISION_MODEL")
+    groq_model: str = Field(default="meta-llama/llama-4-scout-17b-16e-instruct", alias="GROQ_MODEL")
+    groq_vision_model: str = Field(
+        default="meta-llama/llama-4-scout-17b-16e-instruct",
+        alias="GROQ_VISION_MODEL",
+    )
     frontend_origin: str = Field(default="http://localhost:5173", alias="FRONTEND_ORIGIN")
     allowed_origins_raw: str = Field(
         default="http://localhost:5173,http://127.0.0.1:5173",
